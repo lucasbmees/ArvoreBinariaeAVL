@@ -1,5 +1,4 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
 public class Main {
     public static void main(String[] args) {
         ArvoreBinaria arvore = new ArvoreBinaria();
@@ -9,12 +8,12 @@ public class Main {
         arvore.inserir(20);
         arvore.inserir(40);
 
-        Nodo resultado = arvore.busca(30);
+        arvore.busca(30);
+        arvore.remover(70);
 
-        if (resultado != null) {
-            System.out.println("Valor encontrado: " + resultado.getValor());
-        } else {
-            System.out.println("Valor não encontrado.");
-        }
+        // Imprimir a árvore
+        System.out.println("Árvore Binária:");
+        arvore.imprime(arvore.raiz, "", true);
+
 
     }}

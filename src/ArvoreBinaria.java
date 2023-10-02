@@ -41,11 +41,60 @@ public class ArvoreBinaria {
                 return atual;
             } else if (valor < atual.getValor()) {
                 atual = atual.getEsquerda();
+                System.out.println(atual.getValor());
             } else {
                 atual = atual.getDireita();
+                System.out.println(atual.getValor());
             }
         }
 
         return null;
+
+    }
+    private int encontrarMenorValor(Nodo raiz) {
+        int minValue = raiz.getValor();
+        while (raiz.getEsquerda() != null) {
+            minValue = raiz.getEsquerda().getValor();
+            raiz = raiz.getEsquerda();
+        }
+        return minValue;
+    }
+    public void remover(int valor) {
+        raiz = removerNo(raiz, valor);
+    }
+    private Nodo removerNo(Nodo raiz, int valor) {
+        if (raiz == null) {
+            return null;
+        }
+
+        if (valor < raiz.getValor()) {
+            raiz.setEsquerda(removerNo(raiz.getEsquerda(), valor));
+        } else if (valor > raiz.getValor()) {
+            raiz.setDireita(removerNo(raiz.getDireita(), valor));
+        } else {
+            if (raiz.getEsquerda() == null) {
+                return raiz.getDireita();
+            } else if (raiz.getDireita() == null) {
+                return raiz.getEsquerda();
+            }
+
+            raiz.setValor(encontrarMenorValor(raiz.getDireita()));
+            raiz.setDireita(removerNo(raiz.getDireita(), raiz.getValor()));
+        }
+
+        return raiz;
+    }
+    public void imprime(Nodo node, String prefix, boolean isLeft) {
+        if (node != null) {
+            System.out.println(prefix + (isLeft ? "├── " : "└── ") + node.getValor());
+
+            String newPrefix = prefix + (isLeft ? "│ " : " ");
+
+            imprime(node.getDireita(), newPrefix, true);
+            imprime(node.getEsquerda(), newPrefix, false);
+        } else {
+            System.out.println(prefix + (isLeft ? "├── " : "└── ") + "Vazio");
+        }
     }
 }
+
