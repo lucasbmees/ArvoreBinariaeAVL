@@ -5,7 +5,6 @@ public class ArvoreBinaria {
         raiz = null;
     }
 
-    // Método para inserir um valor na árvore
     public void inserir(int valor) {
         if (raiz == null) {
             raiz = new Nodo(valor);
@@ -41,16 +40,15 @@ public class ArvoreBinaria {
                 return atual;
             } else if (valor < atual.getValor()) {
                 atual = atual.getEsquerda();
-                System.out.println(atual.getValor());
             } else {
                 atual = atual.getDireita();
-                System.out.println(atual.getValor());
             }
         }
 
         return null;
-
     }
+
+
     private int encontrarMenorValor(Nodo raiz) {
         int minValue = raiz.getValor();
         while (raiz.getEsquerda() != null) {
@@ -59,9 +57,11 @@ public class ArvoreBinaria {
         }
         return minValue;
     }
+
     public void remover(int valor) {
         raiz = removerNo(raiz, valor);
     }
+
     private Nodo removerNo(Nodo raiz, int valor) {
         if (raiz == null) {
             return null;
@@ -84,9 +84,11 @@ public class ArvoreBinaria {
 
         return raiz;
     }
+
     public void imprime(Nodo node, String prefix, boolean isLeft) {
         if (node != null) {
-            System.out.println(prefix + (isLeft ? "├── " : "└── ") + node.getValor());
+            System.out.println(prefix + (isLeft ? "├── " : "└── ") + node.getValor() +
+                    " (Dif. Balanceamento: " + calcularDiferencaBalanceamento(node) + ")");
 
             String newPrefix = prefix + (isLeft ? "│ " : " ");
 
@@ -96,5 +98,18 @@ public class ArvoreBinaria {
             System.out.println(prefix + (isLeft ? "├── " : "└── ") + "Vazio");
         }
     }
-}
+
+    private int altura(Nodo no) {
+        if (no == null) {
+            return 0;
+        }
+        return no.getAltura();
+    }
+    private int calcularDiferencaBalanceamento(Nodo no) {
+        if (no == null) {
+            return 0;
+        }
+        return altura(no.getEsquerda()) - altura(no.getDireita());
+    }
+    }
 
