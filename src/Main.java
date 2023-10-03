@@ -1,19 +1,27 @@
-
 public class Main {
     public static void main(String[] args) {
-        ArvoreBinaria arvore = new ArvoreBinaria();
-        arvore.inserir(50);
-        arvore.inserir(30);
-        arvore.inserir(70);
-        arvore.inserir(20);
-        arvore.inserir(40);
+        // Árvore Binária
+        ArvoreBinaria arvoreBinaria = new ArvoreBinaria();
+        int[] valoresBinarios = {50, 30, 70, 20, 40, 80, 10, 5, 15, 35, 45, 60, 90};
+        for (int valor : valoresBinarios) {
+            arvoreBinaria.inserir(valor);
+        }
 
-        arvore.busca(30);
-        arvore.remover(70);
-
-        // Imprimir a árvore
+        // Imprimir a árvore binária
         System.out.println("Árvore Binária:");
-        arvore.imprime(arvore.raiz, "", true);
+        arvoreBinaria.imprime(arvoreBinaria.raiz, "", true);
+        System.out.println();
 
+        // Árvore AVL
+        ArvoreAVL arvoreAVL = new ArvoreAVL();
+        int[] valoresAVL = {30, 50, 10, 5, 15, 35, 45, 60, 90, 80, 40, 20, 70};
+        for (int valor : valoresAVL) {
+            arvoreAVL.inserir(valor);
+        }
 
-    }}
+        // Imprimir a árvore AVL com fator de balanceamento
+        System.out.println("Árvore AVL:");
+        arvoreAVL.imprime(arvoreAVL.raiz, "", true);
+        System.out.println();
+    }
+}
