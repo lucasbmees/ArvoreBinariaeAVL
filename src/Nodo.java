@@ -2,6 +2,15 @@ public class Nodo {
     private int valor;
     private Nodo esquerda;
     private Nodo direita;
+    private int altura;
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
 
     public Nodo(int valor) {
         this.valor = valor;
@@ -31,5 +40,16 @@ public class Nodo {
 
     public void setDireita(Nodo direita) {
         this.direita = direita;
+    }
+    private int altura(Nodo no) {
+        if (no == null) {
+            return -1;
+        }
+        int esquerda = altura(no.getEsquerda());
+        int direita = altura(no.getDireita());
+        if (esquerda > direita) {
+            return 1 + esquerda;
+        }
+        return 1 + direita;
     }
 }
