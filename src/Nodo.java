@@ -1,21 +1,10 @@
-public class Nodo {
-    private int valor;
-    private Nodo esquerda;
-    private Nodo direita;
-    private int altura;
+class Node {
+    int valor, altura;
+    Node esquerda, direita;
 
-    public int getAltura() {
-        return altura;
-    }
-
-    public void setAltura(int altura) {
-        this.altura = altura;
-    }
-
-    public Nodo(int valor) {
+    public Node(int valor) {
         this.valor = valor;
-        this.esquerda = null;
-        this.direita = null;
+        this.altura = 1;
     }
 
     public int getValor() {
@@ -26,30 +15,27 @@ public class Nodo {
         this.valor = valor;
     }
 
-    public Nodo getEsquerda() {
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
+
+    public Node getEsquerda() {
         return esquerda;
     }
 
-    public void setEsquerda(Nodo esquerda) {
+    public void setEsquerda(Node esquerda) {
         this.esquerda = esquerda;
     }
 
-    public Nodo getDireita() {
+    public Node getDireita() {
         return direita;
     }
 
-    public void setDireita(Nodo direita) {
+    public void setDireita(Node direita) {
         this.direita = direita;
-    }
-    private int altura(Nodo no) {
-        if (no == null) {
-            return -1;
-        }
-        int esquerda = altura(no.getEsquerda());
-        int direita = altura(no.getDireita());
-        if (esquerda > direita) {
-            return 1 + esquerda;
-        }
-        return 1 + direita;
     }
 }
