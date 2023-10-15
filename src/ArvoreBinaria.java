@@ -1,5 +1,5 @@
 public class ArvoreBinaria {
-    Nodo raiz;
+    Node raiz;
 
     public ArvoreBinaria() {
         raiz = null;
@@ -7,33 +7,33 @@ public class ArvoreBinaria {
 
     public void inserir(int valor) {
         if (raiz == null) {
-            raiz = new Nodo(valor);
+            raiz = new Node(valor);
             return;
         }
 
-        Nodo atual = raiz;
+
+        Node atual = raiz;
         while (true) {
             if (valor < atual.getValor()) {
                 if (atual.getEsquerda() == null) {
-                    atual.setEsquerda(new Nodo(valor));
+                    atual.setEsquerda(new Node(valor));
                     return;
                 }
                 atual = atual.getEsquerda();
             } else if (valor > atual.getValor()) {
                 if (atual.getDireita() == null) {
-                    atual.setDireita(new Nodo(valor));
+                    atual.setDireita(new Node(valor));
                     return;
                 }
                 atual = atual.getDireita();
             } else {
-                // Valor já existe, você decide o que fazer aqui
                 return;
             }
         }
     }
 
-    public Nodo busca(int valor) {
-        Nodo atual = raiz;
+    public Node busca(int valor) {
+        Node atual = raiz;
 
         while (atual != null) {
             if (valor == atual.getValor()) {
@@ -49,7 +49,7 @@ public class ArvoreBinaria {
     }
 
 
-    private int encontrarMenorValor(Nodo raiz) {
+    private int encontrarMenorValor(Node raiz) {
         int minValue = raiz.getValor();
         while (raiz.getEsquerda() != null) {
             minValue = raiz.getEsquerda().getValor();
@@ -62,7 +62,7 @@ public class ArvoreBinaria {
         raiz = removerNo(raiz, valor);
     }
 
-    private Nodo removerNo(Nodo raiz, int valor) {
+    private Node removerNo(Node raiz, int valor) {
         if (raiz == null) {
             return null;
         }
@@ -85,31 +85,10 @@ public class ArvoreBinaria {
         return raiz;
     }
 
-    public void imprime(Nodo node, String prefix, boolean isLeft) {
-        if (node != null) {
-            System.out.println(prefix + (isLeft ? "├── " : "└── ") + node.getValor() +
-                    " (Dif. Balanceamento: " + calcularDiferencaBalanceamento(node) + ")");
-
-            String newPrefix = prefix + (isLeft ? "│ " : " ");
-
-            imprime(node.getDireita(), newPrefix, true);
-            imprime(node.getEsquerda(), newPrefix, false);
-        } else {
-            System.out.println(prefix + (isLeft ? "├── " : "└── ") + "Vazio");
-        }
-    }
-
-    private int altura(Nodo no) {
+    private int altura(Node no) {
         if (no == null) {
             return 0;
         }
         return no.getAltura();
     }
-    private int calcularDiferencaBalanceamento(Nodo no) {
-        if (no == null) {
-            return 0;
-        }
-        return altura(no.getEsquerda()) - altura(no.getDireita());
-    }
-    }
-
+}
