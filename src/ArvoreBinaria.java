@@ -37,6 +37,7 @@ public class ArvoreBinaria {
 
         while (atual != null) {
             if (valor == atual.getValor()) {
+                System.out.println(valor + " Foi encontrado!");
                 return atual;
             } else if (valor < atual.getValor()) {
                 atual = atual.getEsquerda();
@@ -44,7 +45,7 @@ public class ArvoreBinaria {
                 atual = atual.getDireita();
             }
         }
-
+        System.out.println(valor + " Não foi encontrado!");
         return null;
     }
 

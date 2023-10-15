@@ -71,12 +71,35 @@ public class ArvoreBinariaPanel extends JPanel {
 
     public static void main(String[] args) {
         ArvoreBinaria arvore = new ArvoreBinaria();
-        Random random = new Random();
+        Random random = new Random(12345);
 
-        for (int i = 1; i <= 20000; i++) {
-            int valor_aleatorio = random.nextInt(200) + 1; // Gere um número aleatório entre 1 e 200
+        for (int i = 1; i <= 100; i++) {
+            int valor_aleatorio = random.nextInt(200) + 1;
             arvore.inserir(valor_aleatorio);
         }
+
+        /*for (int i = 1; i <= 500; i++) {
+            int valor_aleatorio = random.nextInt(200) + 1;
+            arvore.inserir(valor_aleatorio);
+        }
+
+        for (int i = 1; i <= 1000; i++) {
+            int valor_aleatorio = random.nextInt(200) + 1;
+            arvore.inserir(valor_aleatorio);
+        }
+
+        for (int i = 1; i <= 10000; i++) {
+            int valor_aleatorio = random.nextInt(200) + 1;
+            arvore.inserir(valor_aleatorio);
+        }
+
+        for (int i = 1; i <= 20000; i++) {
+            int valor_aleatorio = random.nextInt(200) + 1;
+            arvore.inserir(valor_aleatorio);
+        }*/
+
+        arvore.remover(81);
+        arvore.busca(2);
 
 
         JFrame frame = new JFrame("Árvore Binária");
@@ -85,7 +108,6 @@ public class ArvoreBinariaPanel extends JPanel {
         frame.add(scrollPane);
         frame.pack();
         frame.setVisible(true);
-
 
         try {
             String pid = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
